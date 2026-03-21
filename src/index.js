@@ -1,9 +1,9 @@
-import { ctx, canvas, renderList } from "./functions/state";
+import { ctx, canvas, renderList, setDeltaTime } from "./functions/state";
 
+import "./functions/fps";
 import "./functions/input";
-import "./entities/enemy";
+import "./functions/enemyGenerator";
 import "./entities/player";
-import "./entities/bullet";
 
 function drawCanvas() {
   canvas.width = window.innerWidth;
@@ -17,7 +17,11 @@ window.addEventListener("resize", () => {
 });
 drawCanvas();
 
-function render() {
+let lastRender = performance.now();
+function render(thisRender) {
+  setDeltaTime(thisRender - lastRender);
+  lastRender = thisRender;
+
   ctx.clearRect(
     -canvas.width / 2,
     -canvas.height / 2,
@@ -25,11 +29,11 @@ function render() {
     canvas.height,
   );
 
-  renderList.forEach((object) => {
-    object.update();
-  });
+  for (let i = 0; i < renderList.length; i++) {
+    renderList[i].update();
+  }
 
   requestAnimationFrame(render);
 }
 
-render();
+requestAnimationFrame(render);

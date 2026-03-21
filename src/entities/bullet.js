@@ -1,5 +1,6 @@
 import { RelativeEntity } from "./entity";
 import { player } from "./player";
+import { deltaTime, renderList } from "../functions/state";
 
 export class Bullet extends RelativeEntity {
   constructor(x, y, radius, color, angle) {
@@ -7,11 +8,14 @@ export class Bullet extends RelativeEntity {
     this.angle = angle;
   }
 
-  speed = 20;
+  speed = 15;
 
   advance() {
-    this.x += this.speed * Math.cos(this.angle);
-    this.y += this.speed * Math.sin(this.angle);
+    if (this.x > 2000 || this.x < -2000 || this.y > 2000 || this.y < -2000) {
+      renderList.splice(renderList.indexOf(this), 1);
+    }
+    this.x += this.speed * Math.cos(this.angle) * deltaTime;
+    this.y += this.speed * Math.sin(this.angle) * deltaTime;
   }
 
   update() {
