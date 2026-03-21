@@ -1,12 +1,6 @@
 import { Entity } from "./entity";
-import {
-  canvas,
-  ctx,
-  mouseX,
-  mouseY,
-  pressedKeys,
-  renderList,
-} from "../functions/state";
+import { canvas, ctx, mouseX, mouseY, pressedKeys } from "../functions/state";
+import { Bullet } from "./bullet";
 
 export class Player extends Entity {
   constructor(x, y, radius, color) {
@@ -19,12 +13,18 @@ export class Player extends Entity {
     const dx = mouseX - canvas.width / 2;
     const dy = mouseY - canvas.height / 2;
 
-    this.angle = (Math.atan2(dx, dy) * 180) / Math.PI;
+    this.angle = Math.PI / 2 - Math.atan2(dx, dy);
+
+    window.addEventListener("click", (event) => {
+      event.preventDefault();
+      new Bullet(this.x, this.y, 6, "#ffffff", this.angle);
+    });
   }
 
   move() {
     const speed = 4;
     let relativeSpeed = speed;
+
     if (
       Number(pressedKeys.w) +
         Number(pressedKeys.s) +
@@ -41,10 +41,13 @@ export class Player extends Entity {
   }
 
   draw() {
-    ctx.beginPath();
-    ctx.arc(this.x - player.x, this.y - player.y, this.radius, 0, Math.PI * 2);
+    ctx.save();
+
     ctx.fillStyle = this.color;
-    ctx.fill();
+    ctx.rotate(this.angle);
+    this.drawPolygon(0, 0, this.radius, 3);
+
+    ctx.restore();
   }
 
   update() {
@@ -54,5 +57,4 @@ export class Player extends Entity {
   }
 }
 
-export const player = new Player(0, 0, 10, "#ffffff");
-renderList.push(player);
+export const player = new Player(0, 0, 12, "#ffffff");

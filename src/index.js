@@ -3,6 +3,7 @@ import { ctx, canvas, renderList } from "./functions/state";
 import "./functions/input";
 import "./entities/enemy";
 import "./entities/player";
+import "./entities/bullet";
 
 function drawCanvas() {
   canvas.width = window.innerWidth;

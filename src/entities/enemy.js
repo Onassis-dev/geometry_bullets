@@ -1,4 +1,3 @@
-import { renderList } from "../functions/state";
 import { RelativeEntity } from "./entity";
 import { player } from "./player";
 
@@ -22,17 +21,11 @@ export class Enemy extends RelativeEntity {
   }
 }
 
-const enemies = [
-  new Enemy(100, 100, 10, "#d0912a"),
-  new Enemy(200, 200, 10, "#238232"),
-  new Enemy(300, 300, 10, "#82328d"),
-  new Enemy(-400, 400, 10, "#d0912a"),
-  new Enemy(500, -200, 10, "#b30432"),
-  new Enemy(300, -300, 10, "#238232"),
-  new Enemy(285, -74, 10, "#238232"),
-  new Enemy(120, -234, 10, "#d0912a"),
-];
-
-enemies.forEach((enemy) => {
-  renderList.push(enemy);
-});
+new Enemy(100, 100, 10, "#d0912a");
+new Enemy(200, 200, 10, "#238232");
+new Enemy(300, 300, 10, "#82328d");
+new Enemy(-400, 400, 10, "#d0912a");
+new Enemy(500, -200, 10, "#b30432");
+new Enemy(300, -300, 10, "#238232");
+new Enemy(285, -74, 10, "#238232");
+new Enemy(120, -234, 10, "#d0912a");

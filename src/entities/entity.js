@@ -1,4 +1,4 @@
-import { ctx } from "../functions/state";
+import { ctx, renderList } from "../functions/state";
 
 export class Entity {
   constructor(x, y, radius, color) {
@@ -6,6 +6,24 @@ export class Entity {
     this.y = y;
     this.radius = radius;
     this.color = color;
+    renderList.push(this);
+  }
+
+  drawPolygon(cx, cy, r, n) {
+    ctx.beginPath();
+
+    for (let i = 0; i < n; i++) {
+      const angle = (i / n) * Math.PI * 2;
+
+      const x = cx + r * Math.cos(angle);
+      const y = cy + r * Math.sin(angle);
+
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+
+    ctx.closePath();
+    ctx.fill();
   }
 }
 
