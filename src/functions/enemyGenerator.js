@@ -1,4 +1,5 @@
 import { Enemy } from "../entities/enemy";
+import { paused } from "./state";
 
 function getRandomPosition() {
   return Math.random() * 1800 - 900;
@@ -17,13 +18,16 @@ function generateLargeEnemy() {
 }
 
 setInterval(() => {
+  if (paused) return;
   generateSmallEnemy();
 }, 1500);
 
 setInterval(() => {
+  if (paused) return;
   generateMediumEnemy();
 }, 1000);
 
 setInterval(() => {
+  if (paused) return;
   generateLargeEnemy();
 }, 5000);

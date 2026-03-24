@@ -27,9 +27,10 @@ drawCanvas();
 
 let lastRender = performance.now();
 function render(thisRender) {
-  if (paused) return;
   setDeltaTime(thisRender - lastRender);
   lastRender = thisRender;
+
+  if (paused) return requestAnimationFrame(render);
 
   ctx.clearRect(
     -canvas.width / 2,
@@ -50,3 +51,9 @@ function render(thisRender) {
 }
 
 requestAnimationFrame(render);
+
+// TODO: Add a menu screeen
+// TODO: Add a record
+// Add a sound on enemy hit
+// Add a sound on bullet shoot
+// Add a sound on game over

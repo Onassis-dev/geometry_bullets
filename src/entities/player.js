@@ -11,6 +11,7 @@ import {
 } from "../functions/state";
 import { Bullet } from "./bullet";
 import { checkCollision } from "../functions/collisions";
+import { reset } from "../functions/reset";
 
 export class Player extends Entity {
   constructor(x, y, radius, color) {
@@ -66,7 +67,7 @@ export class Player extends Entity {
   checkCollisionWithEnemy() {
     for (let i = 0; i < enemyList.length; i++) {
       if (checkCollision(this, enemyList[i])) {
-        setPaused(true);
+        reset();
       }
     }
   }
