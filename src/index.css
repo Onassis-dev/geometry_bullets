@@ -5,6 +5,7 @@
 
 * {
   color: var(--foreground);
+  box-sizing: border-box;
 }
 
 body {
@@ -12,6 +13,11 @@ body {
   overflow: hidden;
   font-family: monospace;
   background-color: var(--background);
+}
+
+p {
+  margin: 0;
+  margin-bottom: 12px;
 }
 
 #fps {
@@ -47,22 +53,40 @@ body {
 
 #menu-content {
   display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 10px;
-  align-items: center;
+  grid-template-rows: auto 1fr 50px;
+  gap: 24px;
   justify-content: center;
   height: clamp(200px, 60%, 400px);
+  width: 100vw;
+  max-width: 400px;
 }
 
 #menu-title {
   font-size: 40px;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
 }
 
 #menu-buttons {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.text-container {
+  font-size: 16px;
+  padding: 16px;
+  background-color: var(--background);
+  border-radius: 5px;
+  border: 1px solid var(--foreground);
+  width: 100%;
+  max-width: 400px;
 }
 
 .menu-button {

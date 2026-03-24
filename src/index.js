@@ -59,5 +59,3 @@ requestAnimationFrame(render);
 // Add a sound on game over
 
 // Add a settings screen
-// Add a how to play screen
-// Add a credits screen
