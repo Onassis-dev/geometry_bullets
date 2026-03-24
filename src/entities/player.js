@@ -75,7 +75,7 @@ export class Player extends Entity {
       (this.toGoX - this.x) ** 2 + (this.toGoY - this.y) ** 2,
     );
     const movedDistance = this.teleportSpeed * deltaTime;
-    this.color = "#bbbbbb";
+    this.color = "#ddaaaa";
     this.teleportCooldown = 100;
 
     if (distanceToGo > movedDistance) {

@@ -59,4 +59,3 @@ requestAnimationFrame(render);
 
 // Add a resume button
 // Add records for each difficulty
-// Add a cooldown for the teleportd
