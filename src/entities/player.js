@@ -25,6 +25,7 @@ export class Player extends Entity {
       if (event.key === " ") {
         this.toGoX = this.x + (mouseX - canvas.width / 2);
         this.toGoY = this.y + (mouseY - canvas.height / 2);
+        this.toGoAngle = this.angle;
         this.teleporting = true;
       }
     });
@@ -33,10 +34,12 @@ export class Player extends Entity {
   angle = 0;
   toGoX = 0;
   toGoY = 0;
+  toGoAngle = 0;
+  teleportSpeed = 20;
   teleporting = false;
-  teleportSpeed = 15;
+  speed = 4;
 
-  pointtToMOuse() {
+  pointToMouse() {
     const dx = mouseX - canvas.width / 2;
     const dy = mouseY - canvas.height / 2;
 
@@ -45,8 +48,7 @@ export class Player extends Entity {
 
   move() {
     if (this.teleporting) return this.teleport();
-    const speed = 4;
-    let relativeSpeed = speed;
+    let relativeSpeed = this.speed;
 
     if (
       Number(pressedKeys.w) +
@@ -55,27 +57,30 @@ export class Player extends Entity {
         Number(pressedKeys.d) >=
       2
     )
-      relativeSpeed = (speed * Math.sqrt(2)) / 2;
+      relativeSpeed = (this.speed * Math.sqrt(2)) / 2;
 
     if (pressedKeys.w) this.y -= relativeSpeed * deltaTime;
     if (pressedKeys.s) this.y += relativeSpeed * deltaTime;
     if (pressedKeys.a) this.x -= relativeSpeed * deltaTime;
     if (pressedKeys.d) this.x += relativeSpeed * deltaTime;
-    if (this.x > 1000) this.x = 1000;
-    if (this.x < -1000) this.x = -1000;
-    if (this.y > 1000) this.y = 1000;
-    if (this.y < -1000) this.y = -1000;
+    if (this.x > 1500) this.x = 1500;
+    if (this.x < -1500) this.x = -1500;
+    if (this.y > 1500) this.y = 1500;
+    if (this.y < -1500) this.y = -1500;
   }
 
   teleport() {
-    if (this.x > this.toGoX) this.x -= this.teleportSpeed * deltaTime;
-    else if (this.x < this.toGoX) this.x += this.teleportSpeed * deltaTime;
-    if (this.y > this.toGoY) this.y -= this.teleportSpeed * deltaTime;
-    else if (this.y < this.toGoY) this.y += this.teleportSpeed * deltaTime;
-    if (
-      Math.abs(this.x - this.toGoX) < 30 &&
-      Math.abs(this.y - this.toGoY) < 30
-    ) {
+    const distanceToGo = Math.sqrt(
+      (this.toGoX - this.x) ** 2 + (this.toGoY - this.y) ** 2,
+    );
+    const movedDistance = this.teleportSpeed * deltaTime;
+
+    if (distanceToGo > movedDistance) {
+      this.x += this.teleportSpeed * Math.cos(this.toGoAngle) * deltaTime;
+      this.y += this.teleportSpeed * Math.sin(this.toGoAngle) * deltaTime;
+    } else {
+      this.x = this.toGoX;
+      this.y = this.toGoY;
       this.teleporting = false;
     }
   }
@@ -99,7 +104,7 @@ export class Player extends Entity {
   }
 
   update() {
-    this.pointtToMOuse();
+    this.pointToMouse();
     this.checkCollisionWithEnemy();
     this.move();
     this.draw();

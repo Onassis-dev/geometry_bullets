@@ -6,6 +6,6 @@ export function drawBorder() {
   ctx.strokeStyle = "#242424";
   ctx.lineWidth = 10;
   ctx.beginPath();
-  ctx.strokeRect(-player.x - 1000, -player.y - 1000, 2000, 2000);
+  ctx.strokeRect(-player.x - 1500, -player.y - 1500, 3000, 3000);
   ctx.restore();
 }

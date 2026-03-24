@@ -12,7 +12,7 @@ export class Bullet extends RelativeEntity {
   speed = 14;
 
   advance() {
-    if (this.x > 2000 || this.x < -2000 || this.y > 2000 || this.y < -2000) {
+    if (this.x > 3000 || this.x < -3000 || this.y > 3000 || this.y < -3000) {
       bulletList.splice(bulletList.indexOf(this), 1);
     }
     this.x += this.speed * Math.cos(this.angle) * deltaTime;

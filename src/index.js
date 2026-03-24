@@ -58,5 +58,3 @@ requestAnimationFrame(render);
 // Add a sound on game over
 
 // Add a settings screen
-// Improve the position of spawn
-// Add the teleport function
