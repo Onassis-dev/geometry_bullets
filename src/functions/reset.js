@@ -1,5 +1,5 @@
 import { player } from "../entities/player";
-import { bulletList, enemyList, setPaused } from "./state";
+import { bulletList, enemyList, setGameOver, setPaused } from "./state";
 import { resetScore } from "./score";
 
 export const reset = () => {
@@ -7,6 +7,7 @@ export const reset = () => {
   player.y = 0;
   bulletList.length = 0;
   enemyList.length = 0;
-  setPaused(true);
+  setGameOver(true);
+  setPaused(false);
   resetScore();
 };

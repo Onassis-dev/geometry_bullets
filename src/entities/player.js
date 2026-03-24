@@ -6,7 +6,7 @@ import {
   enemyList,
   mouseX,
   mouseY,
-  paused,
+  stopped,
   pressedKeys,
 } from "../functions/state";
 import { Bullet } from "./bullet";
@@ -21,7 +21,7 @@ export class Player extends Entity {
       new Bullet(this.x, this.y, 6, "#ffffff", this.angle);
     });
     window.addEventListener("keypress", (event) => {
-      if (paused) return;
+      if (stopped) return;
       if (event.key === " " && this.teleportCooldown <= 0) {
         this.toGoX = this.x + (mouseX - canvas.width / 2);
         this.toGoY = this.y + (mouseY - canvas.height / 2);

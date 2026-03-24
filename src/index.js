@@ -5,7 +5,7 @@ import {
   setDeltaTime,
   bulletList,
   enemyList,
-  paused,
+  stopped,
 } from "./functions/state";
 
 import "./functions/menu";
@@ -31,7 +31,7 @@ function render(thisRender) {
   setDeltaTime(thisRender - lastRender);
   lastRender = thisRender;
 
-  if (paused) return requestAnimationFrame(render);
+  if (stopped) return requestAnimationFrame(render);
 
   ctx.clearRect(
     -canvas.width / 2,
@@ -57,5 +57,4 @@ requestAnimationFrame(render);
 // Add a sound on bullet shoot
 // Add a sound on game over
 
-// Add a resume button
 // Add records for each difficulty

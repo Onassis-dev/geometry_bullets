@@ -1,4 +1,4 @@
-import { paused, pressedKeys, setPaused } from "./state";
+import { pressedKeys, setPaused, paused } from "./state";
 
 window.addEventListener("keydown", (event) => {
   pressedKeys[event.key] = true;

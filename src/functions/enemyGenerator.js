@@ -1,5 +1,5 @@
 import { Enemy } from "../entities/enemy";
-import { paused } from "./state";
+import { stopped } from "./state";
 import { player } from "../entities/player";
 import { difficulty } from "./difficulty";
 
@@ -60,21 +60,21 @@ function generateLargeEnemy() {
 
 const initializeSmallEnemyInterval = () => {
   setTimeout(() => {
-    if (!paused) generateSmallEnemy();
+    if (!stopped) generateSmallEnemy();
     initializeSmallEnemyInterval();
   }, smallEnemyInterval[difficulty]);
 };
 
 const initializeMediumEnemyInterval = () => {
   setTimeout(() => {
-    if (!paused) generateMediumEnemy();
+    if (!stopped) generateMediumEnemy();
     initializeMediumEnemyInterval();
   }, mediumEnemyInterval[difficulty]);
 };
 
 const initializeLargeEnemyInterval = () => {
   setTimeout(() => {
-    if (!paused) generateLargeEnemy();
+    if (!stopped) generateLargeEnemy();
     initializeLargeEnemyInterval();
   }, largeEnemyInterval[difficulty]);
 };

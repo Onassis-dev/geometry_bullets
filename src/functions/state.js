@@ -20,12 +20,24 @@ export const enemyList = [];
 export let mouseX = 0;
 export let mouseY = 0;
 
-export let paused = true;
+export let paused = false;
 export function setPaused(value) {
+  if (gameOver) return;
   paused = value;
-  const menuEl = document.getElementById("menu");
-  if (menuEl) menuEl.style.display = value ? "flex" : "none";
+  stopped = gameOver || paused;
+  const menuEl = document.getElementById("pause-menu");
+  menuEl.style.display = value ? "flex" : "none";
 }
+
+export let gameOver = true;
+export function setGameOver(value) {
+  gameOver = value;
+  stopped = gameOver || paused;
+  const gameOverEl = document.getElementById("menu");
+  gameOverEl.style.display = value ? "flex" : "none";
+}
+
+export let stopped = gameOver || paused;
 
 export let deltaTime = 0;
 export const setDeltaTime = (value) => (deltaTime = value / 10);

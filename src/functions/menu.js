@@ -1,7 +1,8 @@
-import { setPaused } from "./state";
+import { setGameOver, setPaused } from "./state";
 import { setDifficulty } from "./difficulty";
 
 export const menu = document.getElementById("menu");
+export const pauseMenu = document.getElementById("pause-menu");
 export const playButton = document.getElementById("play-button");
 export const howToPlayButton = document.getElementById("how-to-play-button");
 export const settingsButton = document.getElementById("settings-button");
@@ -12,9 +13,14 @@ export const credits = document.getElementById("credits");
 export const settings = document.getElementById("settings");
 export const howToPlay = document.getElementById("how-to-play");
 export const menuButtons = document.getElementById("menu-buttons");
+export const resumeButton = document.getElementById("resume-button");
 export const difficultyButtons = document.getElementById("difficulty-buttons");
 
 playButton.addEventListener("click", () => {
+  setGameOver(false);
+});
+
+pauseMenu.addEventListener("click", () => {
   setPaused(false);
 });
 
