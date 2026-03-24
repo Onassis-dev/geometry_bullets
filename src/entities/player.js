@@ -6,6 +6,7 @@ import {
   enemyList,
   mouseX,
   mouseY,
+  paused,
   pressedKeys,
 } from "../functions/state";
 import { Bullet } from "./bullet";
@@ -19,9 +20,21 @@ export class Player extends Entity {
       event.preventDefault();
       new Bullet(this.x, this.y, 6, "#ffffff", this.angle);
     });
+    window.addEventListener("keypress", (event) => {
+      if (paused) return;
+      if (event.key === " ") {
+        this.toGoX = this.x + (mouseX - canvas.width / 2);
+        this.toGoY = this.y + (mouseY - canvas.height / 2);
+        this.teleporting = true;
+      }
+    });
   }
 
   angle = 0;
+  toGoX = 0;
+  toGoY = 0;
+  teleporting = false;
+  teleportSpeed = 15;
 
   pointtToMOuse() {
     const dx = mouseX - canvas.width / 2;
@@ -31,6 +44,7 @@ export class Player extends Entity {
   }
 
   move() {
+    if (this.teleporting) return this.teleport();
     const speed = 4;
     let relativeSpeed = speed;
 
@@ -53,6 +67,19 @@ export class Player extends Entity {
     if (this.y < -1000) this.y = -1000;
   }
 
+  teleport() {
+    if (this.x > this.toGoX) this.x -= this.teleportSpeed * deltaTime;
+    else if (this.x < this.toGoX) this.x += this.teleportSpeed * deltaTime;
+    if (this.y > this.toGoY) this.y -= this.teleportSpeed * deltaTime;
+    else if (this.y < this.toGoY) this.y += this.teleportSpeed * deltaTime;
+    if (
+      Math.abs(this.x - this.toGoX) < 30 &&
+      Math.abs(this.y - this.toGoY) < 30
+    ) {
+      this.teleporting = false;
+    }
+  }
+
   draw() {
     ctx.save();
 
@@ -65,7 +92,7 @@ export class Player extends Entity {
 
   checkCollisionWithEnemy() {
     for (let i = 0; i < enemyList.length; i++) {
-      if (checkCollision(this, enemyList[i])) {
+      if (!this.teleporting && checkCollision(this, enemyList[i])) {
         reset();
       }
     }

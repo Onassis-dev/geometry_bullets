@@ -4,5 +4,5 @@
       "noUnusedLocals": true,
       "noUnusedParameters": true
     },
-    "include": ["src/**/*.js"]
+    "include": ["src/**/*.js", "src/**/*.d.ts"]
   }

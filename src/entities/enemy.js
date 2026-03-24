@@ -3,6 +3,7 @@ import { bulletList, deltaTime, enemyList } from "../functions/state";
 import { RelativeEntity } from "./entity";
 import { incrementScore } from "../functions/score";
 import { player } from "./player";
+import { play } from "../functions/audio";
 
 export class Enemy extends RelativeEntity {
   constructor(x, y, radius, color, speed) {
@@ -24,6 +25,7 @@ export class Enemy extends RelativeEntity {
       if (checkCollision(this, bulletList[i])) {
         enemyList.splice(enemyList.indexOf(this), 1);
         incrementScore();
+        play();
       }
     }
   }
