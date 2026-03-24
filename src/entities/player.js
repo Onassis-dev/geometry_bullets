@@ -7,7 +7,6 @@ import {
   mouseX,
   mouseY,
   pressedKeys,
-  setPaused,
 } from "../functions/state";
 import { Bullet } from "./bullet";
 import { checkCollision } from "../functions/collisions";

@@ -12,6 +12,7 @@ import "./functions/fps";
 import "./functions/input";
 import "./functions/enemyGenerator";
 import "./entities/player";
+import { drawBorder } from "./functions/border";
 
 function drawCanvas() {
   canvas.width = window.innerWidth;
@@ -39,6 +40,7 @@ function render(thisRender) {
     canvas.height,
   );
 
+  drawBorder();
   for (let i = 0; i < bulletList.length; i++) {
     bulletList[i].update();
   }
@@ -52,8 +54,10 @@ function render(thisRender) {
 
 requestAnimationFrame(render);
 
-// TODO: Add a menu screeen
-// TODO: Add a record
 // Add a sound on enemy hit
 // Add a sound on bullet shoot
 // Add a sound on game over
+
+// Add a settings screen
+// Add a how to play screen
+// Add a credits screen

@@ -6,15 +6,15 @@ function getRandomPosition() {
 }
 
 function generateSmallEnemy() {
-  new Enemy(getRandomPosition(), getRandomPosition(), 8, "#098723", 0.5);
+  new Enemy(getRandomPosition(), getRandomPosition(), 12, "#098723", 0.8);
 }
 
 function generateMediumEnemy() {
-  new Enemy(getRandomPosition(), getRandomPosition(), 16, "#d0912a", 1);
+  new Enemy(getRandomPosition(), getRandomPosition(), 20, "#d0912a", 1.6);
 }
 
 function generateLargeEnemy() {
-  new Enemy(getRandomPosition(), getRandomPosition(), 32, "#dd1111", 2);
+  new Enemy(getRandomPosition(), getRandomPosition(), 38, "#dd1111", 4);
 }
 
 setInterval(() => {
