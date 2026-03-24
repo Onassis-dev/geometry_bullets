@@ -89,6 +89,14 @@ p {
   max-width: 400px;
 }
 
+#difficulty-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+}
+
 .menu-button {
   font-size: 18px;
   font-family: monospace;

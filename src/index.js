@@ -8,10 +8,10 @@ import {
   paused,
 } from "./functions/state";
 
+import "./functions/menu";
 import "./functions/fps";
 import "./functions/input";
 import "./functions/enemyGenerator";
-import "./entities/player";
 import { drawBorder } from "./functions/border";
 
 function drawCanvas() {
@@ -57,4 +57,6 @@ requestAnimationFrame(render);
 // Add a sound on bullet shoot
 // Add a sound on game over
 
-// Add a settings screen
+// Add a resume button
+// Add a cooldown for the teleportd
+// Add records for each difficulty

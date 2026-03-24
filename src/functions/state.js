@@ -1,5 +1,3 @@
-import { menu } from "./menu";
-
 const el = document.getElementById("canvas");
 if (!(el instanceof HTMLCanvasElement)) {
   throw new Error("Missing or invalid #canvas element");
@@ -25,13 +23,12 @@ export let mouseY = 0;
 export let paused = true;
 export function setPaused(value) {
   paused = value;
-  menu.style.display = value ? "flex" : "none";
+  const menuEl = document.getElementById("menu");
+  if (menuEl) menuEl.style.display = value ? "flex" : "none";
 }
 
 export let deltaTime = 0;
-export function setDeltaTime(value) {
-  deltaTime = value / 10;
-}
+export const setDeltaTime = (value) => (deltaTime = value / 10);
 
 window.addEventListener("mousemove", (event) => {
   mouseX = event.clientX;

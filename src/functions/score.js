@@ -1,3 +1,5 @@
+import { difficulty } from "./difficulty";
+
 const scoreElement = document.getElementById("score");
 const highScoreElement = document.getElementById("high-score");
 
@@ -13,11 +15,12 @@ export function resetScore() {
   showScore();
 }
 
-export let highScore = Number(localStorage.getItem("highScore")) || 0;
+export let highScore =
+  Number(localStorage.getItem("highScore_" + difficulty)) || 0;
 export function setHighScore(value) {
   highScore = value;
   showHighScore();
-  localStorage.setItem("highScore", highScore.toString());
+  localStorage.setItem("highScore_" + difficulty, highScore.toString());
 }
 
 function showScore() {

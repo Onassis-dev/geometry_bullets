@@ -78,6 +78,23 @@ export class Player extends Entity {
     if (distanceToGo > movedDistance) {
       this.x += this.teleportSpeed * Math.cos(this.toGoAngle) * deltaTime;
       this.y += this.teleportSpeed * Math.sin(this.toGoAngle) * deltaTime;
+
+      if (this.x > 1500) {
+        this.x = 1500;
+        this.teleporting = false;
+      }
+      if (this.x < -1500) {
+        this.x = -1500;
+        this.teleporting = false;
+      }
+      if (this.y > 1500) {
+        this.y = 1500;
+        this.teleporting = false;
+      }
+      if (this.y < -1500) {
+        this.y = -1500;
+        this.teleporting = false;
+      }
     } else {
       this.x = this.toGoX;
       this.y = this.toGoY;
