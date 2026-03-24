@@ -32,7 +32,7 @@ const mediumEnemySpeed = {
 const largeEnemySpeed = {
   normal: 3.2,
   hard: 4.8,
-  fast: 6,
+  fast: 5.5,
 };
 
 function getRandomPosition() {

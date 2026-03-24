@@ -22,7 +22,7 @@ export class Player extends Entity {
     });
     window.addEventListener("keypress", (event) => {
       if (paused) return;
-      if (event.key === " ") {
+      if (event.key === " " && this.teleportCooldown <= 0) {
         this.toGoX = this.x + (mouseX - canvas.width / 2);
         this.toGoY = this.y + (mouseY - canvas.height / 2);
         this.toGoAngle = this.angle;
@@ -38,6 +38,7 @@ export class Player extends Entity {
   teleportSpeed = 20;
   teleporting = false;
   speed = 4;
+  teleportCooldown = 0;
 
   pointToMouse() {
     const dx = mouseX - canvas.width / 2;
@@ -74,6 +75,8 @@ export class Player extends Entity {
       (this.toGoX - this.x) ** 2 + (this.toGoY - this.y) ** 2,
     );
     const movedDistance = this.teleportSpeed * deltaTime;
+    this.color = "#bbbbbb";
+    this.teleportCooldown = 100;
 
     if (distanceToGo > movedDistance) {
       this.x += this.teleportSpeed * Math.cos(this.toGoAngle) * deltaTime;
@@ -120,10 +123,21 @@ export class Player extends Entity {
     }
   }
 
+  updateTeleportCooldown() {
+    if (this.teleportCooldown > 0) {
+      this.teleportCooldown -= deltaTime;
+      if (this.teleportCooldown <= 0) {
+        this.teleportCooldown = 0;
+        this.color = "#ffffff";
+      }
+    }
+  }
+
   update() {
     this.pointToMouse();
     this.checkCollisionWithEnemy();
     this.move();
+    this.updateTeleportCooldown();
     this.draw();
   }
 }

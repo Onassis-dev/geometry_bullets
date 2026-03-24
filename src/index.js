@@ -58,5 +58,5 @@ requestAnimationFrame(render);
 // Add a sound on game over
 
 // Add a resume button
-// Add a cooldown for the teleportd
 // Add records for each difficulty
+// Add a cooldown for the teleportd
