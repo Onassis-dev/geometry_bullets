@@ -1,4 +1,12 @@
-import { ctx, canvas, renderList, setDeltaTime } from "./functions/state";
+import { player } from "./entities/player";
+import {
+  ctx,
+  canvas,
+  setDeltaTime,
+  bulletList,
+  enemyList,
+  paused,
+} from "./functions/state";
 
 import "./functions/fps";
 import "./functions/input";
@@ -19,6 +27,7 @@ drawCanvas();
 
 let lastRender = performance.now();
 function render(thisRender) {
+  if (paused) return;
   setDeltaTime(thisRender - lastRender);
   lastRender = thisRender;
 
@@ -29,9 +38,13 @@ function render(thisRender) {
     canvas.height,
   );
 
-  for (let i = 0; i < renderList.length; i++) {
-    renderList[i].update();
+  for (let i = 0; i < bulletList.length; i++) {
+    bulletList[i].update();
   }
+  for (let i = 0; i < enemyList.length; i++) {
+    enemyList[i].update();
+  }
+  player.update();
 
   requestAnimationFrame(render);
 }

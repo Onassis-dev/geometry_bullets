@@ -1,4 +1,4 @@
-import { ctx, renderList } from "../functions/state";
+import { ctx } from "../functions/state";
 
 export class Entity {
   constructor(x, y, radius, color) {
@@ -6,7 +6,6 @@ export class Entity {
     this.y = y;
     this.radius = radius;
     this.color = color;
-    renderList.push(this);
   }
 
   drawPolygon(cx, cy, r, n) {

@@ -3,11 +3,14 @@ import {
   canvas,
   ctx,
   deltaTime,
+  enemyList,
   mouseX,
   mouseY,
   pressedKeys,
+  setPaused,
 } from "../functions/state";
 import { Bullet } from "./bullet";
+import { checkCollision } from "../functions/collisions";
 
 export class Player extends Entity {
   constructor(x, y, radius, color) {
@@ -55,16 +58,25 @@ export class Player extends Entity {
 
     ctx.fillStyle = this.color;
     ctx.rotate(this.angle);
-    this.drawPolygon(0, 0, this.radius, 3);
+    this.drawPolygon(0, 0, this.radius + 4, 3);
 
     ctx.restore();
   }
 
+  checkCollisionWithEnemy() {
+    for (let i = 0; i < enemyList.length; i++) {
+      if (checkCollision(this, enemyList[i])) {
+        setPaused(true);
+      }
+    }
+  }
+
   update() {
     this.pointtToMOuse();
+    this.checkCollisionWithEnemy();
     this.move();
     this.draw();
   }
 }
 
-export const player = new Player(0, 0, 12, "#ffffff");
+export const player = new Player(0, 0, 8, "#ffffff");

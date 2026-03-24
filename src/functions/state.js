@@ -13,10 +13,16 @@ export const ctx = context;
 
 export const pressedKeys = {};
 
-export const renderList = [];
+export const bulletList = [];
+export const enemyList = [];
 
 export let mouseX = 0;
 export let mouseY = 0;
+
+export let paused = false;
+export function setPaused(value) {
+  paused = value;
+}
 
 export let deltaTime = 0;
 export function setDeltaTime(value) {

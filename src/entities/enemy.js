@@ -1,4 +1,5 @@
-import { deltaTime } from "../functions/state";
+import { checkCollision } from "../functions/collisions";
+import { bulletList, deltaTime, enemyList } from "../functions/state";
 import { RelativeEntity } from "./entity";
 import { player } from "./player";
 
@@ -6,6 +7,7 @@ export class Enemy extends RelativeEntity {
   constructor(x, y, radius, color, speed) {
     super(x, y, radius, color);
     this.speed = speed;
+    enemyList.push(this);
   }
 
   moveTowardsPlayer() {
@@ -16,8 +18,17 @@ export class Enemy extends RelativeEntity {
     this.y += (dy / distance) * this.speed * deltaTime;
   }
 
+  checkCollisionWithBullet() {
+    for (let i = 0; i < bulletList.length; i++) {
+      if (checkCollision(this, bulletList[i])) {
+        enemyList.splice(enemyList.indexOf(this), 1);
+      }
+    }
+  }
+
   update() {
     this.moveTowardsPlayer();
+    this.checkCollisionWithBullet();
     this.draw(player);
   }
 }
