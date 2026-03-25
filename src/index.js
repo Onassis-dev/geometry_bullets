@@ -54,7 +54,6 @@ function render(thisRender) {
 
 requestAnimationFrame(render);
 
-// Add a sound on bullet shoot
-// Add a sound on game over
-
-// Add records for each difficulty
+// Add readme.md
+// Write blog entry
+// Fix links

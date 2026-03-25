@@ -17,6 +17,7 @@ export function resetScore() {
 
 export let highScore =
   Number(localStorage.getItem("highScore_" + difficulty)) || 0;
+
 export function setHighScore(value) {
   highScore = value;
   showHighScore();
@@ -25,6 +26,11 @@ export function setHighScore(value) {
 
 function showScore() {
   scoreElement.textContent = "Score: " + score.toString();
+}
+
+export function updateHighScoreDifficulty() {
+  highScore = Number(localStorage.getItem("highScore_" + difficulty)) || 0;
+  showHighScore();
 }
 
 function showHighScore() {

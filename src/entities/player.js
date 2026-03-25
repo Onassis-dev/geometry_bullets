@@ -12,13 +12,14 @@ import {
 import { Bullet } from "./bullet";
 import { checkCollision } from "../functions/collisions";
 import { reset } from "../functions/reset";
+import { playClickAudio, playTeleportAudio } from "../functions/audio";
 
 export class Player extends Entity {
   constructor(x, y, radius, color) {
     super(x, y, radius, color);
     window.addEventListener("click", (event) => {
       event.preventDefault();
-      new Bullet(this.x, this.y, 6, "#ffffff", this.angle);
+      if (!stopped) new Bullet(this.x, this.y, 6, "#ffffff", this.angle);
     });
     window.addEventListener("keypress", (event) => {
       if (stopped) return;
@@ -34,6 +35,7 @@ export class Player extends Entity {
           Math.atan2(mouseX - canvas.width / 2, mouseY - canvas.height / 2);
 
         this.teleporting = true;
+        playTeleportAudio();
       }
     });
   }
@@ -136,6 +138,7 @@ export class Player extends Entity {
       if (this.teleportCooldown <= 0) {
         this.teleportCooldown = 0;
         this.color = "#ffffff";
+        playClickAudio();
       }
     }
   }

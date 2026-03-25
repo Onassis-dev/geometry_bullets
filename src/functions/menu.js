@@ -1,5 +1,6 @@
-import { setGameOver, setPaused } from "./state";
-import { setDifficulty } from "./difficulty";
+import { setGameOver, setPaused } from './state';
+import { setDifficulty } from './difficulty';
+import { playClickAudio } from './audio';
 
 export const menu = document.getElementById("menu");
 export const pauseMenu = document.getElementById("pause-menu");
@@ -16,36 +17,42 @@ export const menuButtons = document.getElementById("menu-buttons");
 export const resumeButton = document.getElementById("resume-button");
 export const difficultyButtons = document.getElementById("difficulty-buttons");
 
-playButton.addEventListener("click", () => {
+playButton.addEventListener('click', () => {
+  playClickAudio();
   setGameOver(false);
 });
 
-pauseMenu.addEventListener("click", () => {
+pauseMenu.addEventListener('click', () => {
+  playClickAudio();
   setPaused(false);
 });
 
-creditsButton.addEventListener("click", () => {
+creditsButton.addEventListener('click', () => {
+  playClickAudio();
   hideAllMenus();
-  credits.style.display = "block";
-  backButton.style.display = "inline-block";
+  credits.style.display = 'block';
+  backButton.style.display = 'inline-block';
 });
 
-howToPlayButton.addEventListener("click", () => {
+howToPlayButton.addEventListener('click', () => {
+  playClickAudio();
   hideAllMenus();
-  howToPlay.style.display = "block";
-  backButton.style.display = "inline-block";
+  howToPlay.style.display = 'block';
+  backButton.style.display = 'inline-block';
 });
 
-settingsButton.addEventListener("click", () => {
+settingsButton.addEventListener('click', () => {
+  playClickAudio();
   hideAllMenus();
-  settings.style.display = "block";
-  backButton.style.display = "inline-block";
+  settings.style.display = 'block';
+  backButton.style.display = 'inline-block';
 });
 
-backButton.addEventListener("click", () => {
+backButton.addEventListener('click', () => {
+  playClickAudio();
   hideAllMenus();
-  menuButtons.style.display = "flex";
-  backButton.style.display = "none";
+  menuButtons.style.display = 'flex';
+  backButton.style.display = 'none';
 });
 
 function hideAllMenus() {
@@ -56,8 +63,9 @@ function hideAllMenus() {
   backButton.style.display = "none";
 }
 
-difficultyButtons.querySelectorAll(".menu-button").forEach((button) => {
-  button.addEventListener("click", () => {
-    setDifficulty(button.id.split("-")[0]);
+difficultyButtons.querySelectorAll('.menu-button').forEach((button) => {
+  button.addEventListener('click', () => {
+    playClickAudio();
+    setDifficulty(button.id.split('-')[0]);
   });
 });

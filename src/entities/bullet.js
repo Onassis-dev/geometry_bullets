@@ -1,12 +1,14 @@
 import { RelativeEntity } from "./entity";
 import { player } from "./player";
 import { bulletList, deltaTime } from "../functions/state";
+import { playShootAudio } from "../functions/audio";
 
 export class Bullet extends RelativeEntity {
   constructor(x, y, radius, color, angle) {
     super(x, y, radius, color);
     this.angle = angle;
     bulletList.push(this);
+    playShootAudio();
   }
 
   speed = 14;
