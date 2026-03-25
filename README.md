@@ -2,6 +2,8 @@
 
 A browser-based 2D arena shooter built with HTML5 Canvas and vanilla JavaScript. You play as a triangle that aims at the cursor, dodges and destroys geometric enemies, and uses a short-range teleport to escape pressure.
 
+You can play at [geometrybullets.onassis.dev](https://geometrybullets.onassis.dev)
+
 ## Development
 
 Requirements: **Node.js** and a package manager (**pnpm** is used in this repo).
