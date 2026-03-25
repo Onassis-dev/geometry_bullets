@@ -22,10 +22,17 @@ export class Player extends Entity {
     });
     window.addEventListener("keypress", (event) => {
       if (stopped) return;
-      if (event.key === " " && this.teleportCooldown <= 0) {
+      if (
+        event.key === " " &&
+        this.teleportCooldown <= 0 &&
+        !this.teleporting
+      ) {
         this.toGoX = this.x + (mouseX - canvas.width / 2);
         this.toGoY = this.y + (mouseY - canvas.height / 2);
-        this.toGoAngle = this.angle;
+        this.toGoAngle =
+          Math.PI / 2 -
+          Math.atan2(mouseX - canvas.width / 2, mouseY - canvas.height / 2);
+
         this.teleporting = true;
       }
     });
