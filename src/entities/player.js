@@ -17,9 +17,11 @@ import { playClickAudio, playTeleportAudio } from "../functions/audio";
 export class Player extends Entity {
   constructor(x, y, radius, color) {
     super(x, y, radius, color);
-    window.addEventListener("click", (event) => {
-      event.preventDefault();
-      if (!stopped) new Bullet(this.x, this.y, 6, "#ffffff", this.angle);
+    window.addEventListener('click', (event) => {
+      if (!stopped) {
+        event.preventDefault();
+        new Bullet(this.x, this.y, 6, '#ffffff', this.angle);
+      }
     });
     window.addEventListener("keypress", (event) => {
       if (stopped) return;

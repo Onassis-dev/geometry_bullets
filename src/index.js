@@ -53,7 +53,3 @@ function render(thisRender) {
 }
 
 requestAnimationFrame(render);
-
-// Add readme.md
-// Write blog entry
-// Fix links
