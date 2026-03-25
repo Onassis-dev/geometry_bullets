@@ -17,10 +17,10 @@ import { playClickAudio, playTeleportAudio } from "../functions/audio";
 export class Player extends Entity {
   constructor(x, y, radius, color) {
     super(x, y, radius, color);
-    window.addEventListener('click', (event) => {
+    window.addEventListener("click", (event) => {
       if (!stopped) {
         event.preventDefault();
-        new Bullet(this.x, this.y, 6, '#ffffff', this.angle);
+        new Bullet(this.x, this.y, 6, "#ffffff", this.angle);
       }
     });
     window.addEventListener("keypress", (event) => {
@@ -87,7 +87,7 @@ export class Player extends Entity {
     );
     const movedDistance = this.teleportSpeed * deltaTime;
     this.color = "#ddaaaa";
-    this.teleportCooldown = 100;
+    this.teleportCooldown = 80;
 
     if (distanceToGo > movedDistance) {
       this.x += this.teleportSpeed * Math.cos(this.toGoAngle) * deltaTime;

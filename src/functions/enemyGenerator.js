@@ -6,12 +6,12 @@ import { difficulty } from "./difficulty";
 const smallEnemyInterval = {
   normal: 1800,
   hard: 1000,
-  fast: 1500,
+  fast: 3000,
 };
 const mediumEnemyInterval = {
   normal: 1200,
   hard: 500,
-  fast: 1000,
+  fast: 1200,
 };
 const largeEnemyInterval = {
   normal: 6000,
@@ -22,7 +22,7 @@ const largeEnemyInterval = {
 const smallEnemySpeed = {
   normal: 0.8,
   hard: 1.2,
-  fast: 1.6,
+  fast: 1,
 };
 const mediumEnemySpeed = {
   normal: 1.6,
