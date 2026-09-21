@@ -27,7 +27,7 @@ The build uses [vite-plugin-singlefile](https://github.com/richardtallent/vite-p
 
 This project was made completely in vanilla javascript, it has 0 runtime dependencies.
 
-As of now the single file is -14kb, and -5kb compressed with gzip
+As of now the single file is ~14kb, and ~5kb compressed with gzip
 
 ## Project layout
 
